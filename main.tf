@@ -18,7 +18,7 @@ resource "aws_iam_role" "role" {
 
   tags = merge(
     local.common_tags,
-    { Name = "${var.env}-${var.component}-security-group" }
+    { Name = "${var.env}-${var.component}-iam-role" }
   )
 }
 

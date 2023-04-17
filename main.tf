@@ -1,3 +1,27 @@
+# creating Iam role for ansible mechanism to have ansible pull mechanism
+resource "aws_iam_role" "role" {
+  name = "${var.env}--${var.component}"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  tags = merge(
+    local.common_tags,
+    { Name = "${var.env}-${var.component}-security-group" }
+  )
+}
+
 # creating security group for app
 resource "aws_security_group" "main" {
   name        = "${var.env}--${var.component}-security-group"

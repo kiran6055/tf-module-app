@@ -28,7 +28,7 @@ resource "aws_iam_instance_profile" "profile" {
   role = aws_iam_role.role.name
 }
 
-#creating attaching policy to the role
+#creating  policy to the role with the help of UI creating JSon code
 resource "aws_iam_policy" "policy" {
   name        = "${var.env}--${var.component}-parameter-store-policy"
   path        = "/"

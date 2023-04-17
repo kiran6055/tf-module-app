@@ -1,7 +1,7 @@
-# creating security group for ALB
+# creating security group for app
 resource "aws_security_group" "main" {
-  name        = "${var.env}-alb-${var.component}-security-group"
-  description = "${var.env}-alb-${var.component}-security-group"
+  name        = "${var.env}--${var.component}-security-group"
+  description = "${var.env}--${var.component}-security-group"
   vpc_id      = var.vpc_id
 
   ingress {
@@ -21,7 +21,7 @@ resource "aws_security_group" "main" {
 
   tags = merge(
     local.common_tags,
-    { Name = "${var.env}-alb-${var.component}-security-group" }
+    { Name = "${var.env}-${var.component}-security-group" }
   )
 }
 

@@ -56,7 +56,7 @@ resource "aws_iam_policy" "policy" {
         "Resource" : "*"
       }
     ]
-  }
+  })
 }
 
 #attaching role with policy

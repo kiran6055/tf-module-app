@@ -47,7 +47,7 @@ resource "aws_iam_policy" "policy" {
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource" : "arn:aws:ssm:us-east-1:742313604750:parameter/dev.frontend*"
+        "Resource" : "arn:aws:ssm:us-east-1:742313604750:parameter/${var.env}.${var.component}*"
       },
       {
         "Sid" : "VisualEditor1",
@@ -59,10 +59,16 @@ resource "aws_iam_policy" "policy" {
   }
 }
 
+#attaching role with policy
+resource "aws_iam_role_policy_attachment" "role-attach" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+
 # creating security group for app
 resource "aws_security_group" "main" {
-  name        = "${var.env}--${var.component}-security-group"
-  description = "${var.env}--${var.component}-security-group"
+  name        = "${var.env}-${var.component}-security-group"
+  description = "${var.env}-${var.component}-security-group"
   vpc_id      = var.vpc_id
 
   ingress {

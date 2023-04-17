@@ -1,13 +1,13 @@
 # creating security group for ALB
 resource "aws_security_group" "main" {
-  name        = "${var.env}-alb-${var.subnets_name}-security-group"
-  description = "${var.env}-alb-${var.subnets_name}-security-group"
+  name        = "${var.env}-alb-${var.component}-security-group"
+  description = "${var.env}-alb-${var.component}-security-group"
   vpc_id      = var.vpc_id
 
   ingress {
     description = "HTTP"
-    from_port   = 80
-    to_port     = 80
+    from_port   = var.app_port
+    to_port     = var.app_port
     protocol    = "tcp"
     cidr_blocks = var.allow_cidr
   }

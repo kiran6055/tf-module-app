@@ -124,7 +124,7 @@ resource "aws_launch_template" "main" {
 
 # creating autoscaling group
 resource "aws_autoscaling_group" "asg" {
-  name                      = "${var.env}-${var.component}-asg"
+  name                      = "${var.env}-${var.component}"
   max_size                  = var.max_size
   min_size                  = var.min_size
   desired_capacity          = var.desired_capacity

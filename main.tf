@@ -105,7 +105,7 @@ resource "aws_security_group" "main" {
 
 # creating launch template for autoscaling group
 resource "aws_launch_template" "main" {
-  name_prefix   = "${var.env}-${var.component}"
+  name          = "${var.env}-${var.component}"
   image_id      = data.aws_ami.centos8.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]

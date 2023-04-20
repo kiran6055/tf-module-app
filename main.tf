@@ -22,6 +22,17 @@ resource "aws_iam_role" "role" {
   )
 }
 
+
+
+# creating route 53 record
+resource "aws_route53_record" "app" {
+  zone_id = "Z05909301HWY2LI69YHHG"
+  name    = "${var.component}-${var.env}.kiranprav.link"
+  type    = "CNAME"
+  ttl     = 30
+  records = [var.alb]
+}
+
 # creating instance profile for role
 resource "aws_iam_instance_profile" "profile" {
   name = "${var.env}--${var.component}-role"

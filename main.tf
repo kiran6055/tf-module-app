@@ -30,9 +30,9 @@ resource "aws_iam_instance_profile" "profile" {
 
 #creating  policy to the role with the help of UI creating JSon code
 resource "aws_iam_policy" "policy" {
-  name        = "${var.env}--${var.component}-parameter-store-policy"
+  name        = "${var.env}-${var.component}-parameter-store-policy"
   path        = "/"
-  description = "${var.env}--${var.component}-parameter-store-policy"
+  description = "${var.env}-${var.component}-parameter-store-policy"
 
 
   policy = jsonencode({

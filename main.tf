@@ -23,16 +23,6 @@ resource "aws_iam_role" "role" {
 }
 
 
-
-# creating route 53 record
-resource "aws_route53_record" "app" {
-  zone_id = "Z05909301HWY2LI69YHHG"
-  name    = "${var.component}-${var.env}.kiranprav.link"
-  type    = "CNAME"
-  ttl     = 30
-  records = [var.alb]
-}
-
 # creating instance profile for role
 resource "aws_iam_instance_profile" "profile" {
   name = "${var.env}--${var.component}-role"
@@ -168,4 +158,21 @@ resource "aws_autoscaling_group" "asg" {
 #value               = "Bar"
 #propagate_at_launch = true
 
+# creating route 53 record
+resource "aws_route53_record" "app" {
+  zone_id = "Z05909301HWY2LI69YHHG"
+  name    = "${var.component}-${var.env}.kiranprav.link"
+  type    = "CNAME"
+  ttl     = 30
+  records = [var.alb]
+}
+
+
+# creating target group for load balancer
+resource "aws_lb_target_group" "target_group" {
+  name     = "${var.component}-${var.env}"
+  port     = var.app_port
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+}
 

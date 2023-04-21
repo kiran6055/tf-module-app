@@ -191,9 +191,9 @@ resource "aws_lb_target_group" "target_group" {
 
 
 resource "aws_lb_listener_rule" "backend_rule" {
-  count         = var.app_port != 0 ? 1 : 0
-  listener_arn = var.listener
-  priority     = var.listener_priority
+  count           = var.app_port != 0 ? 1 : 0
+  listener_arn    = var.listener
+  priority        = var.listener_priority
 
   action {
     type             = "forward"

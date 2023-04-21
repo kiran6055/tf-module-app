@@ -186,3 +186,23 @@ resource "aws_lb_target_group" "target_group" {
   }
 }
 
+
+# creating listner rule to alb for backend
+
+
+resource "aws_lb_listener_rule" "backend_rule" {
+  count         = var.app_port != 0 ? 1 : 0
+  listener_arn  = var.listener
+  priority      = 99
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group.arn
+  }
+
+  condition {
+    host_header {
+      values = ["${var.component}-${var.env}.kiranprav.link"]
+    }
+  }
+}

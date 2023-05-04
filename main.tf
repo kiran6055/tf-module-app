@@ -168,8 +168,8 @@ resource "aws_autoscaling_group" "asg" {
 
 # creating route 53 record
 resource "aws_route53_record" "app" {
-  zone_id = "Z05909301HWY2LI69YHHG"
-  name    = "${var.component}-${var.env}.kiranprav.link"
+  zone_id = "Z09836283CE71XJOYIM7M"
+  name    = "${var.component}-${var.env}.awsctr.online"
   type    = "CNAME"
   ttl     = 30
   records = [var.alb]
@@ -210,7 +210,7 @@ resource "aws_lb_listener_rule" "backend_rule" {
 
   condition {
     host_header {
-      values = ["${var.component}-${var.env}.kiranprav.link"]
+      values = ["${var.component}-${var.env}.awsctr.online"]
     }
   }
 }

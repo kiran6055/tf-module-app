@@ -49,13 +49,14 @@ resource "aws_iam_policy" "policy" {
           "ssm:GetParameter"
         ],
         "Resource" : [
-          "arn:aws:ssm:us-east-1:742313604750:parameter/${var.env}.${var.component}*",
-          "arn:aws:ssm:us-east-1:742313604750:parameter/nexus*",
-          "arn:aws:ssm:us-east-1:742313604750:parameter/${var.env}.docdb*",
-          "arn:aws:ssm:us-east-1:742313604750:parameter/${var.env}.elasticache*",
-          "arn:aws:ssm:us-east-1:742313604750:parameter/${var.env}.rds*",
-          "arn:aws:ssm:us-east-1:742313604750:parameter/${var.env}.rabbitmq*",
-          "arn:aws:ssm:us-east-1:742313604750:parameter/grafana*"
+
+          "arn:aws:ssm:us-east-1:086083061026:parameter/${var.env}.${var.component}*",
+          "arn:aws:ssm:us-east-1:086083061026:parameter/nexus*",
+          "arn:aws:ssm:us-east-1:086083061026:parameter/${var.env}.docdb*",
+          "arn:aws:ssm:us-east-1:086083061026:parameter/${var.env}.elasticache*",
+          "arn:aws:ssm:us-east-1:086083061026:parameter/${var.env}.rds*",
+          "arn:aws:ssm:us-east-1:086083061026:parameter/${var.env}.rabbitmq*",
+          "arn:aws:ssm:us-east-1:086083061026:parameter/grafana*"
         ]
       },
       {

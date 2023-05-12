@@ -120,9 +120,9 @@ resource "aws_security_group" "main" {
 
 # creating launch template for autoscaling group
 resource "aws_launch_template" "main" {
-  name          = "${var.env}-${var.component}"
-  image_id      = data.aws_ami.centos8.id
-  instance_type = var.instance_type
+  name                   = "${var.env}-${var.component}"
+  image_id               = data.aws_ami.centos8.id
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]
   user_data              = base64encode(templatefile("${path.module}/user-data.sh", { component = var.component, env = var.env }))
 
@@ -131,9 +131,6 @@ resource "aws_launch_template" "main" {
     arn = aws_iam_instance_profile.profile.arn
   }
 
-  instance_market_options {
-    market_type = "spot"
-  }
 
 }
 

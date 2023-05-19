@@ -126,6 +126,7 @@ resource "aws_launch_template" "main" {
   vpc_security_group_ids = [aws_security_group.main.id]
   user_data              = base64encode(templatefile("${path.module}/user-data.sh", { component = var.component, env = var.env }))
 
+# userdata is a bootstrap code which is given to download ansible and ansible code is given to run components base64encode is given to encrypt the data
 
   iam_instance_profile {
     arn = aws_iam_instance_profile.profile.arn
@@ -158,6 +159,18 @@ resource "aws_autoscaling_group" "asg" {
       propagate_at_launch = true
     }
   }
+}
+
+resource "aws_autoscaling_policy" "cpu-tracking-policy" {
+  name  = "whenCPULoadIncreases"
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
+  }
+  autoscaling_group_name = aws_autoscaling_group.asg.name
 }
 
 

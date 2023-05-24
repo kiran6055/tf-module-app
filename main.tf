@@ -231,7 +231,7 @@ resource "aws_lb_listener_rule" "backend_rule" {
 
 
 
-# creating a listener to load balancer for backend
+# creating a listener to load balancer for frontend https security
 
 resource "aws_lb_listener" "frontend" {
   count             = var.listener_priority == 0 ? 1 : 0
@@ -249,7 +249,7 @@ resource "aws_lb_listener" "frontend" {
 
 # this is used because we wont get http request spo we have to use this resource in order to get traffic redirect http
 
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "front_end_http" {
   count             = var.listener_priority == 0 ? 1 : 0
   load_balancer_arn = var.alb_arn
   port              = "80"

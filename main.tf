@@ -180,7 +180,7 @@ resource "aws_autoscaling_policy" "cpu-tracking-policy" {
 
 # creating route 53 record
 resource "aws_route53_record" "app" {
-  zone_id = "Z09836283CE71XJOYIM7M"
+  zone_id = "Z07596741WQU2SC2HOJ8D"
   name    = "${var.component}-${var.env}.awsctr.online"
   type    = "CNAME"
   ttl     = 30
